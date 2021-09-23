@@ -35,13 +35,28 @@ class LoginViewController: UIViewController {
                 let alert = UIAlertController(title: "Successfully Login", message: "", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "ok", style: .default, handler: { _ in
                     self.dismiss(animated: true)
+                    if let firstVC = self.storyboard?.instantiateViewController(identifier: "firstVC") {
+                        self.view.window?.rootViewController = firstVC
+                    }
                 })
                 alert.addAction(ok)
                 self.present(alert, animated: true)
             }
         }
-        
     }
+    
+   static func checkLogin(window: UIWindow){
+        
+        if let user = Auth.auth().currentUser {
+            print("Your successfully Login: \(user.email!), uid : \(user.uid)")
+        }else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            // let logVC = storyboard.instantiateViewController(identifier: "loginVC")
+            let logVC =  storyboard.instantiateViewController(withIdentifier: "loginVC")
+            window.rootViewController = logVC
+        }
+    }
+
     
 
     /*

@@ -34,9 +34,9 @@ class MenuViewController: UIViewController ,UITableViewDataSource, UITableViewDe
     
         
     }
-    @IBAction func segueFinishView(_ sender: Any) {
-        self.performSegue(withIdentifier: "gofinish", sender: nil)
-    }
+//    @IBAction func segueFinishView(_ sender: Any) {
+//        self.performSegue(withIdentifier: "gofinish", sender: nil) //轉場方式之一 : 會觸發 prepare(for segue
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Segue" {

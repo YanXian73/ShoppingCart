@@ -48,11 +48,11 @@ class FinishTableViewController: UITableViewController {
                     self.iceList.append(document.data()["ice"] as! String )
                     self.sugarList.append(document.data()["sugar"] as! String )
                     self.imageList.append(document.data()["image"] as! String)
-                    print(document.data())
+              //      print(document.data())
                 }
                     DispatchQueue.main.async {
                        self.tableView.reloadData()
-                        self.tableView.rowHeight = 140
+              //          self.tableView.rowHeight = 140
                             //self.tableView.frame.size.height/CGFloat(self.nameList.count)
                     }
                 }
@@ -89,24 +89,48 @@ class FinishTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "等等...", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == nameList.count {
+            return 54
+        }
+        return 140
+    }
         
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return nameList.count
+        return nameList.count+1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+       
+        if indexPath.row == nameList.count {
+            let totalCell = tableView.dequeueReusableCell(withIdentifier: "totalCell", for: indexPath) as! MyCell
+            var totalPrices = 0
+            var totalCount = 0
+             let prices = priceList.map { Int($0) }
+            for i in prices {
+                totalPrices += i!
+            }
+            let count = countList.map { Int($0) }
+            for o in count {
+                totalCount += o!
+            }
+            totalCell.totalCountLabel.text = "\(totalCount)杯"
+            totalCell.totalPriceLabel.text = "＄\(totalPrices)"
+            totalCell.totalLabel.text = "總共: "
+            return totalCell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "finishcell", for: indexPath) as! MyCell
         let showID = "ID： "
         let space = " "
         cell.documentIDLabel.text = showID + self.documentID[indexPath.row]
         cell.nameLabel.text =  self.nameList[indexPath.row] + space + self.sugarList[indexPath.row] + space + self.iceList[indexPath.row]
-        cell.priceLable.text =  self.priceList[indexPath.row]
-        cell.totalCountLabel.text = "\(self.countList[indexPath.row])杯"
+        cell.priceLable.text =  "$\(self.priceList[indexPath.row])"
+        cell.totalCount.text = "\(self.countList[indexPath.row])杯"
         cell.finishView.image = UIImage(named: self.imageList[indexPath.row])
 //        cell.showSugarLabel.text = self.sugarList[indexPath.row]
 //        cell.showIceLabel.text = self.iceList[indexPath.row]

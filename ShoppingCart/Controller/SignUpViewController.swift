@@ -16,6 +16,9 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailTextField.placeholder = "請輸入電子郵件"
+        passwordTextField.placeholder = "請輸入密碼"
+        passwordTextField.isSecureTextEntry = true
         // Do any additional setup after loading the view.
     }
  

@@ -15,12 +15,16 @@ class MyCell: UITableViewCell, UITextFieldDelegate  {
 //    }
     var orderVC : OrderViewController!
     var totalPrice : String?
- 
+    
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalCountLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
+    
     @IBOutlet weak var finishView: UIImageView!
     @IBOutlet weak var documentIDLabel: UILabel!
     @IBOutlet weak var documentID: UITextField!
   
-    @IBOutlet weak var totalCountLabel: UILabel!
+    @IBOutlet weak var totalCount: UILabel!
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var sugarSegmentC: UISegmentedControl!
     @IBOutlet weak var iceSegmentC: UISegmentedControl!

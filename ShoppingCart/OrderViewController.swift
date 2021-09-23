@@ -35,9 +35,6 @@ class OrderViewController: UIViewController, UITableViewDataSource,UITableViewDe
         
      //   UIImageView(image: image)
     }
-    @IBAction func orderBtn(_ sender: Any) {
-  
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         updateReturnPressed() // 轉場傳送資料前更新 self.myCell
         
@@ -66,7 +63,7 @@ class OrderViewController: UIViewController, UITableViewDataSource,UITableViewDe
         db.collection("orders").document("\(self.currentData.documentID!)").setData([
                                                                                         "name": "\(self.currentData.teaName ?? "")",
                                                                                         "count": "\(self.currentData.count ?? "")",
-                                                                                        "price": "$\(self.currentData.totalPrice ?? "")",
+                                                                                        "price": "\(self.currentData.totalPrice ?? "")",
                                                                                         "sugar": "\(self.currentData.sugar ?? "")",
                                                                                         "ice" : "\(self.currentData.ice ?? "")",
                                                                                         "image": "\(self.currentData.image ?? "")"])
