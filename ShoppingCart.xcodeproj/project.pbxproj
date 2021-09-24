@@ -35,6 +35,12 @@
 		05A609C2268877A3003DF773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05A609C1268877A3003DF773 /* Assets.xcassets */; };
 		05A609C5268877A3003DF773 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05A609C3268877A3003DF773 /* LaunchScreen.storyboard */; };
 		05E00E7E268895AE008A4928 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E00E7D268895AE008A4928 /* MyCell.swift */; };
+		05E0BDCE26FDB56600758EEE /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 05E0BDCD26FDB56600758EEE /* SideMenu */; };
+		05E0BDD226FDB8DA00758EEE /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0BDD126FDB8DA00758EEE /* SideMenuViewController.swift */; };
+		05E0BDD426FDC46F00758EEE /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0BDD326FDC46F00758EEE /* TestViewController.swift */; };
+		05E0BDD626FDD62200758EEE /* PersonalInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0BDD526FDD62200758EEE /* PersonalInfoTableViewController.swift */; };
+		05E0BDDD26FDDAD100758EEE /* PersonalInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0BDDC26FDDAD100758EEE /* PersonalInfoTableViewCell.swift */; };
+		05E0BDDF26FE2FB600758EEE /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0BDDE26FE2FB600758EEE /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +72,11 @@
 		05A609C4268877A3003DF773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05A609C6268877A3003DF773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05E00E7D268895AE008A4928 /* MyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
+		05E0BDD126FDB8DA00758EEE /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		05E0BDD326FDC46F00758EEE /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		05E0BDD526FDD62200758EEE /* PersonalInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoTableViewController.swift; sourceTree = "<group>"; };
+		05E0BDDC26FDDAD100758EEE /* PersonalInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoTableViewCell.swift; sourceTree = "<group>"; };
+		05E0BDDE26FE2FB600758EEE /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				059948322697388300DE5E50 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				05E0BDCE26FDB56600758EEE /* SideMenu in Frameworks */,
 				0539B56E26FB0A2B00019315 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +97,12 @@
 			isa = PBXGroup;
 			children = (
 				0539B56A26FB02FD00019315 /* SignUpViewController.swift */,
+				05E0BDD526FDD62200758EEE /* PersonalInfoTableViewController.swift */,
 				055254FB26FB207700A67E86 /* LoginViewController.swift */,
+				05A609BC268877A2003DF773 /* MenuViewController.swift */,
+				056764E0269408D700E001E2 /* OrderViewController.swift */,
+				058850D42695690700365394 /* FinishTableViewController.swift */,
+				05E0BDD126FDB8DA00758EEE /* SideMenuViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -100,6 +117,8 @@
 		055E3A1126F467AF00AEFBB7 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				05E0BDDA26FDDAA000758EEE /* Cell */,
+				05E0BDDB26FDDAA200758EEE /* Cell */,
 				055E3A1226F467AF00AEFBB7 /* 紅水烏龍.jpg */,
 				055E3A1326F467AF00AEFBB7 /* 鐵觀音紅茶.jpg */,
 				055E3A1426F467AF00AEFBB7 /* 青檸雷夢org.jpg */,
@@ -137,16 +156,13 @@
 		05A609B7268877A2003DF773 /* ShoppingCart */ = {
 			isa = PBXGroup;
 			children = (
+				05E0BDD826FDD95400758EEE /* Model */,
 				0539B56926FB02D200019315 /* Controller */,
 				055E3A1126F467AF00AEFBB7 /* image */,
+				05E0BDD926FDDA8300758EEE /* Cell */,
 				05A609B8268877A2003DF773 /* AppDelegate.swift */,
 				05A609BA268877A2003DF773 /* SceneDelegate.swift */,
-				05A609BC268877A2003DF773 /* MenuViewController.swift */,
-				056764E0269408D700E001E2 /* OrderViewController.swift */,
-				0599483326974A3200DE5E50 /* FireBase.swift */,
-				058850D42695690700365394 /* FinishTableViewController.swift */,
-				056764E22694101E00E001E2 /* TeaData.swift */,
-				05E00E7D268895AE008A4928 /* MyCell.swift */,
+				05E0BDD326FDC46F00758EEE /* TestViewController.swift */,
 				05A609BE268877A2003DF773 /* Main.storyboard */,
 				05A609C1268877A3003DF773 /* Assets.xcassets */,
 				05A609C3268877A3003DF773 /* LaunchScreen.storyboard */,
@@ -154,6 +170,39 @@
 				05A609C6268877A3003DF773 /* Info.plist */,
 			);
 			path = ShoppingCart;
+			sourceTree = "<group>";
+		};
+		05E0BDD826FDD95400758EEE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0599483326974A3200DE5E50 /* FireBase.swift */,
+				056764E22694101E00E001E2 /* TeaData.swift */,
+				05E0BDDE26FE2FB600758EEE /* UserData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		05E0BDD926FDDA8300758EEE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				05E00E7D268895AE008A4928 /* MyCell.swift */,
+				05E0BDDC26FDDAD100758EEE /* PersonalInfoTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		05E0BDDA26FDDAA000758EEE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		05E0BDDB26FDDAA200758EEE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +224,7 @@
 			packageProductDependencies = (
 				059948312697388300DE5E50 /* FirebaseFirestoreSwift-Beta */,
 				0539B56D26FB0A2B00019315 /* FirebaseAuth */,
+				05E0BDCD26FDB56600758EEE /* SideMenu */,
 			);
 			productName = ShoppingCart;
 			productReference = 05A609B5268877A2003DF773 /* ShoppingCart.app */;
@@ -205,6 +255,7 @@
 			mainGroup = 05A609AC268877A2003DF773;
 			packageReferences = (
 				059948302697388300DE5E50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				05E0BDCC26FDB56500758EEE /* XCRemoteSwiftPackageReference "SideMenu" */,
 			);
 			productRefGroup = 05A609B6268877A2003DF773 /* Products */;
 			projectDirPath = "";
@@ -249,13 +300,18 @@
 				05A609BD268877A2003DF773 /* MenuViewController.swift in Sources */,
 				05E00E7E268895AE008A4928 /* MyCell.swift in Sources */,
 				0599483426974A3200DE5E50 /* FireBase.swift in Sources */,
+				05E0BDDD26FDDAD100758EEE /* PersonalInfoTableViewCell.swift in Sources */,
 				05A609B9268877A2003DF773 /* AppDelegate.swift in Sources */,
+				05E0BDD626FDD62200758EEE /* PersonalInfoTableViewController.swift in Sources */,
+				05E0BDD226FDB8DA00758EEE /* SideMenuViewController.swift in Sources */,
 				05A609BB268877A2003DF773 /* SceneDelegate.swift in Sources */,
 				056764E1269408D700E001E2 /* OrderViewController.swift in Sources */,
 				0539B56B26FB02FD00019315 /* SignUpViewController.swift in Sources */,
 				056764E32694101E00E001E2 /* TeaData.swift in Sources */,
 				055254FC26FB207700A67E86 /* LoginViewController.swift in Sources */,
+				05E0BDD426FDC46F00758EEE /* TestViewController.swift in Sources */,
 				058850D52695690700365394 /* FinishTableViewController.swift in Sources */,
+				05E0BDDF26FE2FB600758EEE /* UserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +523,14 @@
 				minimumVersion = 8.2.0;
 			};
 		};
+		05E0BDCC26FDB56500758EEE /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -479,6 +543,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 059948302697388300DE5E50 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		05E0BDCD26FDB56600758EEE /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05E0BDCC26FDB56500758EEE /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

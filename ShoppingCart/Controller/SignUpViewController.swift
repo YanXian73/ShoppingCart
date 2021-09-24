@@ -40,6 +40,7 @@ class SignUpViewController: UIViewController {
                 let alert = UIAlertController(title: "Successfully signed up", message: "", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "ok", style: .default, handler: {_ in
                     self.dismiss(animated: true)
+                    
                 })
                 alert.addAction(ok)
                 self.present(alert, animated: true)
