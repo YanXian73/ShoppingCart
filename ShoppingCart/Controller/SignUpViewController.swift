@@ -39,8 +39,11 @@ class SignUpViewController: UIViewController {
                 
                 let alert = UIAlertController(title: "Successfully signed up", message: "", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "ok", style: .default, handler: {_ in
-                    self.dismiss(animated: true)
-                    
+                   self.dismiss(animated: true)
+                    //                        if let userVC = self.storyboard?.instantiateViewController(withIdentifier: "personalVC") as? PersonalInfoTableViewController {
+                    //                            userVC.emailAccount = self.emailTextField.text
+                    //                            self.present(userVC, animated: true)
+                    //                    }
                 })
                 alert.addAction(ok)
                 self.present(alert, animated: true)

@@ -8,15 +8,16 @@
 import UIKit
 
 class PersonalInfoTableViewController: UITableViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-
-     var infoImage = UIImage(systemName: "camera")
+    
+    var infoImage = UIImage(systemName: "camera")
+    var emailAccount : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -25,6 +26,8 @@ class PersonalInfoTableViewController: UITableViewController, UIImagePickerContr
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 162
+        }else if indexPath.row == 1 {
+            return 320
         }
         return 73
     }
@@ -36,7 +39,7 @@ class PersonalInfoTableViewController: UITableViewController, UIImagePickerContr
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 3
     }
 
 
@@ -51,21 +54,13 @@ class PersonalInfoTableViewController: UITableViewController, UIImagePickerContr
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath) as! PersonalInfoTableViewCell
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as! PersonalInfoTableViewCell
-            return cell
-        case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell3", for: indexPath) as! PersonalInfoTableViewCell
-            return cell
-        case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell4", for: indexPath) as! PersonalInfoTableViewCell
+            cell.emailTextLabel.text = emailAccount
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell5", for: indexPath) as! PersonalInfoTableViewCell
             return cell
         }
-       
+        
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -74,18 +69,20 @@ class PersonalInfoTableViewController: UITableViewController, UIImagePickerContr
             pickerController.delegate = self
             let alert = UIAlertController(title: "Path", message: "", preferredStyle: .actionSheet)
             let camera = UIAlertAction(title: "Camera", style: .default) { _ in
-                self.dismiss(animated: true)
+          //      self.dismiss(animated: true)
                 pickerController.sourceType = .camera
                 self.present(pickerController, animated: true)
             }
             let savePhotosAlbum = UIAlertAction(title: "PhotosAlbum", style: .default) { _ in
-                self.dismiss(animated: true, completion: nil)
+            //    self.dismiss(animated: true, completion: nil)
                 pickerController.sourceType = .savedPhotosAlbum
                 self.present(pickerController, animated: true, completion: nil)
             }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(cancel)
             alert.addAction(camera)
             alert.addAction(savePhotosAlbum)
-            present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
