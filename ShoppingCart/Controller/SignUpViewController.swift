@@ -15,13 +15,20 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         emailTextField.placeholder = "請輸入電子郵件"
         passwordTextField.placeholder = "請輸入密碼"
         passwordTextField.isSecureTextEntry = true
-        // Do any additional setup after loading the view.
+       
+        setNavigation()
     }
- 
+    func setNavigation() {
+        let btn = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancelDismiss))
+        navigationItem.leftBarButtonItem = btn
+    }
+    @objc func cancelDismiss() {
+        dismiss(animated: true, completion: nil)
+    }
     
   @IBAction  func creatAccountAction() {
         if emailTextField.text  == "" {

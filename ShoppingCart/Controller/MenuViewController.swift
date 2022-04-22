@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MenuViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate {
 //一個飲料清單的購物車
-
+//MARK: - 變數, 物件
     let teaCell = [TeaData(teaName: "熟成紅茶", image: "熟成紅茶.jpg", price: "35", count: "1", datil: "帶有去油解膩的功效"),
                    TeaData(teaName: "熟成冷露", image: "熟成冷露.jpg", price: "35", count: "1", datil: "綠茶"),
                    TeaData(teaName: "鐵觀音紅茶", image: "鐵觀音紅茶.jpg", price: "40", count: "1", datil: "鐵觀音＋紅茶的完美組合"),
@@ -22,16 +23,17 @@ class MenuViewController: UIViewController ,UITableViewDataSource, UITableViewDe
                    TeaData(teaName: "鐵觀音", image: "鐵觀音.jpg", price: "30", count: "1", datil: "獨家經典鐵觀音好喝")]
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var leftBarButtonItem: UIBarButtonItem!
     
- 
+ //MARK: - 生命週期
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = self.tableView.frame.size.height/10
-    
-    
+        //navigationController?.navigationBar.barTintColor = UIColor(red: 184, green: 231, blue: 212, alpha: 1)
+        leftBarButtonItem.title = "登出"
         
     }
 //    @IBAction func segueFinishView(_ sender: Any) {
@@ -48,6 +50,24 @@ class MenuViewController: UIViewController ,UITableViewDataSource, UITableViewDe
         }
     }
  
+    @IBAction func leftNavigationBtnPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "確定要登出？", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "取消", style: .cancel)
+        let action = UIAlertAction(title: "登出", style: .default) { action in
+            do {
+                try Auth.auth().signOut()
+            }catch {
+                print(error)
+            }
+            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        alert.addAction(action)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
     
 //MARk:UITableViewDataSoure
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

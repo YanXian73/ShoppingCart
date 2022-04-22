@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         if let window = self.window {
-            LoginViewController.checkLogin(window: window)
+//            window.rootViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "\(TestFCMViewController.self)")
+            LoginViewController.checkLogin(window: window) //判斷帳號密碼 決定首頁
         }
     }
 
