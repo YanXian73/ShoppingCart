@@ -11,12 +11,17 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    //MARK: - 變數, 物件
+    var pwTextField: UITextField!
+    var action: UIAlertAction!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
+    
+    //MARK: - 生命週期
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,20 +38,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         alert.addTextField { passwordTextField in
             passwordTextField.placeholder = "請輸入密碼"
             passwordTextField.isSecureTextEntry = true
+            self.pwTextField = passwordTextField
         }
         alert.addTextField { passwordTextField in
             passwordTextField.placeholder = "確認輸入密碼"
             passwordTextField.isSecureTextEntry = true
+            passwordTextField.addTarget(self, action: #selector(self.passwordCheck(sender:)), for: .editingChanged)
         }
         
         let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        let action = UIAlertAction(title: "確認", style: .default) { action in
+        action = UIAlertAction(title: "確認", style: .default) { action in
             let account = alert.textFields?[0].text
             //檢查輸入的密碼是否一樣
             guard let password = alert.textFields?[1].text, password == alert.textFields?[2].text else { return }
             Auth.auth().createUser(withEmail: account ?? "", password: password) { result, error in
                 guard let user = result?.user , error == nil else {
                     print(error!.localizedDescription)
+                    let alert = UIAlertController(title: error!.localizedDescription , message: "", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "ok", style: .default, handler: {_ in
+                       self.dismiss(animated: true)
+                    })
+                    alert.addAction(ok)
+                    self.present(alert, animated: true)
                     return
                 }
                 print("Your successfully signed up: \(user.email!), password : \(user.uid)")
@@ -58,6 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true)
             }
         }
+        action.isEnabled = false
         alert.addAction(cancel)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
@@ -67,6 +81,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //            vc.modalPresentationStyle = .custom
 //            present(navi, animated: true, completion: nil)
 //        }
+    }
+    @objc func passwordCheck(sender: UITextField) {
+        if pwTextField.text?.count ?? 0 >= 6, pwTextField.text == sender.text {
+            action.isEnabled = true
+        }else {
+            action.isEnabled = false
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -90,9 +111,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 
                 let alert = UIAlertController(title: "Successfully Login", message: "", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "ok", style: .default, handler: { _ in
-                    self.dismiss(animated: true)
+                    //self.dismiss(animated: true)
                     if let firstVC = self.storyboard?.instantiateViewController(identifier: "firstVC") {
-                        self.view.window?.rootViewController = firstVC
+                        firstVC.modalPresentationStyle = .fullScreen
+                        self.present(firstVC, animated: true, completion: nil)
                     }
                 })
                 alert.addAction(ok)
@@ -105,6 +127,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         if let user = Auth.auth().currentUser {
             print("Your successfully Login: \(user.email!), uid : \(user.uid)")
+            
         }else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             // let logVC = storyboard.instantiateViewController(identifier: "loginVC")

@@ -11,7 +11,8 @@ class TestFCMViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "d789", style: .plain, target: self, action: #selector(test))
+        navigationItem.rightBarButtonItems = [editButtonItem,editButtonItem]
         let button = UIButton(type: .roundedRect)
               button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
               button.setTitle("Test Crash", for: [])
@@ -24,7 +25,9 @@ class TestFCMViewController: UIViewController {
               let _ = numbers[1]
           }
         
-
+    @objc func test () {
+        
+    }
     /*
     // MARK: - Navigation
 
